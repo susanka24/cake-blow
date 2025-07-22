@@ -1,27 +1,12 @@
-// 💡 Přidání svíček z URL parametru (např. ?candles=23)
-window.addEventListener('DOMContentLoaded', () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const candleCount = parseInt(urlParams.get('candles'));
-
-  if (!isNaN(candleCount) && candleCount > 0 && candleCount <= 100) {
-    const input = document.getElementById('number');
-    const form = document.querySelector('form');
-
-    if (input && form) {
-      input.value = candleCount;
-      form.dispatchEvent(new Event('submit')); // „kliknutí“ na tlačítko
-    }
-  }
-});
-
 function addCandles(e) {
-  e.preventDefault();
+  if (e) e.preventDefault();
+
   const number = parseInt(document.getElementById("number").value);
   const cake = document.getElementById("cake");
   cake.innerHTML = "";
 
   if (isNaN(number) || number <= 0 || number > 100) {
-    alert("Please enter a valid number of candles (1-100).");
+    alert("Please enter a valid number of candles (1–100).");
     return;
   }
 
@@ -45,4 +30,17 @@ function addCandles(e) {
   });
 }
 
-document.querySelector("form").addEventListener("submit", addCandles);
+window.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('form');
+  const input = document.getElementById('number');
+
+  form.addEventListener('submit', addCandles);
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const candleCount = parseInt(urlParams.get('candles'));
+
+  if (!isNaN(candleCount) && candleCount > 0 && candleCount <= 100) {
+    input.value = candleCount;
+    addCandles(); // ručně spustíme vytvoření dortu
+  }
+});
