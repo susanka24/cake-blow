@@ -1,3 +1,4 @@
+https://tvuj-username.github.io/cake-blow/?candles=23
 document.addEventListener("DOMContentLoaded", function () {
   const cake = document.querySelector(".cake");
   const candleCountDisplay = document.getElementById("candleCount");
