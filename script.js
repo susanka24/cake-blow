@@ -1,11 +1,19 @@
-// Nastavení počtu svíček z URL parametru ?candles=23
-const urlParams = new URLSearchParams(window.location.search);
-const candlesFromUrl = parseInt(urlParams.get('candles'));
-if (!isNaN(candlesFromUrl) && candlesFromUrl > 0 && candlesFromUrl <= 100) {
-  document.getElementById('number').value = candlesFromUrl;
-  // Spustit funkci, která vytvoří dort (imitace kliknutí na tlačítko)
-  document.querySelector('form').dispatchEvent(new Event('submit'));
-}
+// 💡 Přidání svíček z URL parametru (např. ?candles=23)
+window.addEventListener('DOMContentLoaded', () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const candleCount = parseInt(urlParams.get('candles'));
+
+  if (!isNaN(candleCount) && candleCount > 0 && candleCount <= 100) {
+    const input = document.getElementById('number');
+    const form = document.querySelector('form');
+
+    if (input && form) {
+      input.value = candleCount;
+      form.dispatchEvent(new Event('submit')); // „kliknutí“ na tlačítko
+    }
+  }
+});
+
 
 document.addEventListener("DOMContentLoaded", function () {
   const cake = document.querySelector(".cake");
