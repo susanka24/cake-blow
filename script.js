@@ -1,4 +1,12 @@
-https://susanka24.github.io/cake-blow/?candles=23
+// Nastavení počtu svíček z URL parametru ?candles=23
+const urlParams = new URLSearchParams(window.location.search);
+const candlesFromUrl = parseInt(urlParams.get('candles'));
+if (!isNaN(candlesFromUrl) && candlesFromUrl > 0 && candlesFromUrl <= 100) {
+  document.getElementById('number').value = candlesFromUrl;
+  // Spustit funkci, která vytvoří dort (imitace kliknutí na tlačítko)
+  document.querySelector('form').dispatchEvent(new Event('submit'));
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const cake = document.querySelector(".cake");
   const candleCountDisplay = document.getElementById("candleCount");
